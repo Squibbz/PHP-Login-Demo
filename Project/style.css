@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Jost", sans-serif;
+  background-color: lightslategray;
+}
+
+.nav-wrapper {
+  background: #262626;
+  height: 62px;
+  width: 100%;
+}
+
+.nav-list {
+  float: right;
+  margin-right: 20px;
+}
+
+.nav-list-item {
+  display: inline-block;
+  line-height: 60px;
+  margin: 0 5px;
+}
+
+.nav-list-link {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.nav-list-item :hover {
+  color: lightseagreen;
+}
+
+.signup-form {
+  margin: auto;
+  margin-top: 100px;
+  width: 60%;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="password"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  width: 100%;
+  background-color: lightseagreen;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: rgb(24, 134, 129);
+}
+
+.index-intro {
+  margin: auto;
+  width: 100%;
+  border-radius: 5px;
+  background-color:lightgray;
+  padding: 50px;
+}
+
+.index-intro h1 {
+  margin: auto;
+  width: fit-content;
+}
+
+.index-intro p {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.index-categories {
+  margin: auto;
+  width: 100%;
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 50px;
+}
+
+.index-categories h2 {
+  margin: auto;
+  width: fit-content;
+}
+
+.index-categories-list {
+  width: fit-content;
+  padding: 0px, 50px;
+  margin: auto;
+}
+
+.index-category-item {
+  width: 200px;
+  height: 200px;
+  margin: 20px;
+  display: inline-block;
+  background-color: grey;
+}
+
+.index-category-item h3 {
+  color: white;
+  margin: auto;
+  width: fit-content;
+  padding-top: 80px;
+}
+
+.index-category-item h3 :hover {
+  color: black;
+}
+
+.error-msg {
+  color: palevioletred;
+}
+
+.success-msg {
+  color: seagreen;
+}
