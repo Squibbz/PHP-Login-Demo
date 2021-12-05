@@ -102,7 +102,9 @@ function createUser($conn, $email, $uname, $pword) {
     exit();
 }
 
-// LOGIN FUNCTIONS //
+/**************************
+      LOGIN FUNCTIONS
+***************************/
 
 function emptyInputLogin($uname, $pword) {
     $result;
@@ -142,4 +144,51 @@ function loginUser($conn, $uname_login, $pword_login) {
 
 }
 
+/**************************
+      PROFILE FUNCTIONS
+***************************/
+
+function emptyPasswordInput($uname, $pword, $pword_new) {
+    $result;
+
+    if (empty($uname) || empty($pword)) { // If username or password variables are empty, return emptyInputLogin = true
+        $result = true;
+    } else {
+        $result = false; // Else return false
+    }
+
+    return $result;
+}
+
+function changePassword ($conn, $uname_verify, $pword_verify, $pword_new) {
+
+    $checkUserExists = userExists($conn, $uname_verify, $uname_verify); /* Checking that userExists with $uname in place of username AND email parameters
+                                                                         to account for either being entered by user for login */
+                                                             
+    $sql = "UPDATE accounts SET pword = ? WHERE username = ? OR email = ?;"; // Basic prepared statement (select all from accounts where username OR email = *placeholder*)
+    $stmt = mysqli_stmt_init($conn); // Initalize mysqli_stmt with connection to proper database
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("Location: ../profile.php?error=stmtfailed"); // If prepared statement fails, return error
+        exit();
+    }
+
+    
+
+    $storedHash = $checkUserExists["pword"]; // Retrieving hashed password from previously established associative array
+    $checkPword = password_verify($pword_verify, $storedHash); // Comparing entered CURRENT password to hashed password
+    $hashedNewPword = password_hash($pword_new, PASSWORD_DEFAULT); // Hashing new password using password_hash and default algorithm
+
+    mysqli_stmt_bind_param($stmt, "sss", $hashedNewPword, $uname_verify, $uname_verify); // Pass user data (three strings, hence "sss") to stmt parameters
+
+    if ($checkUserExists === false || $checkPword === false) {
+        header("Location: ../profile.php?error=wronglogin"); // If user does not exist in database, throw error
+        exit();
+    } else if ($checkPword === true) {
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        header("Location: ../profile.php?error=none"); // Returns no error meaning user has been successfully created
+        exit();
+    }
+    
+}
 ?>
