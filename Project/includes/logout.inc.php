@@ -1,9 +1,9 @@
 <?php
 
-    session_start(); // Initialize session
-    session_unset(); // Unset ALL variables (globals not cleared by session_destroy())
-    session_destroy(); // Destroy session
+    session_start();
+    session_unset();
+    session_destroy();
 
-    header("Location: ../index.php") // Return to home upon logout
+    header("Location: ../index.php")
 
 ?>

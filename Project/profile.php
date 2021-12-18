@@ -15,10 +15,10 @@
         </div>
     </section>
 
-    <section>
-        
-            <form class="signup-form" action="includes/profile.inc.php" method="post">
-                <h2>Change Password</h2><h2></h2>
+    <section class="signup-form">
+        <h2>Change Password</h2>
+        <div class="signup-form-form">
+            <form action="includes/profile.inc.php" method="post">
                 <label for="login-uname">Username:</label>
                 <input type="text" name="login-uname" placeholder="Username...">
                 <label for="login-pword">Current Password:</label>
@@ -27,8 +27,9 @@
                 <input type="password" name="new-login-pword" placeholder="New Password...">
                 <label for="new-login-pword">Verify New Password:</label>
                 <input type="password" name="verify-new-login-pword" placeholder="Repeat Password...">
-                <button class="btn" type="submit" name="submit">Change Password</button>
-            
+                <button type="submit" name="submit">Change Password</button>
+            </form>
+        </div>
         <?php
         if (isset($_GET["error"])) {
             if ($_GET["error"] == "emptyinput") {
@@ -42,8 +43,7 @@
             }
         }
         ?>
-        </form>
     </section>
-    </div>
+
 </body>
 </html>

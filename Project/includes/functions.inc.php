@@ -1,13 +1,15 @@
 <?php
 
 /**************************
-      SIGNUP FUNCTIONS
+    VALIDATION FUNCTIONS
 ***************************/
+
+// SIGNUP FUNCTIONS //
 
 function emptyInputSignup($email, $uname, $pword, $pwordRepeat) {
     $result;
 
-    if (empty($email) || empty($uname) || empty($pword) || empty($pwordRepeat)) { // If input missing from any of these fields, return true
+    if (empty($email) || empty($uname) || empty($pword) || empty($pwordRepeat)) { // If input in any of these fields, return true
         $result = true;
     } else { // Else return false
         $result = false;
@@ -121,18 +123,21 @@ function loginUser($conn, $uname_login, $pword_login) {
     $checkUserExists = userExists($conn, $uname_login, $uname_login); /* Checking that userExists with $uname in place of username AND email parameters
                                                                          to account for either being entered by user for login */
 
+    if ($checkUserExists === false) {
+        header("Location: ../login.php?error=wronglogin"); // If user does not exist in database, throw error
+        exit();
+    }
+
     $storedHash = $checkUserExists["pword"]; // Retrieving hashed password from previously established associative array
     $checkPword = password_verify($pword_login, $storedHash); // Comparing entered password to hashed password
 
-    if ($checkUserExists === false || $checkPword === false) {
-        header("Location: ../login.php?error=wronglogin"); // If user does not exist in database, throw error
+    if ($checkPword === false) {
+        header("Location: ../login.php?error=wrongpassword"); // If passwords do not match, throw error
         exit();
     } else if ($checkPword === true) {
         session_start(); // If passwords match, start session and initialize user's id and username as session variables
         $_SESSION["userid"] = $checkUserExists["userid"];
         $_SESSION["username"] = $checkUserExists["username"];
-        $_SESSION["email"] = $checkUserExists["email"];
-        $_SESSION["regdate"] = $checkUserExists["regdate"];
         header("Location: ../index.php"); // Return to homepage
         exit();
     }
@@ -186,5 +191,4 @@ function changePassword ($conn, $uname_verify, $pword_verify, $pword_new) {
     }
     
 }
-
 ?>

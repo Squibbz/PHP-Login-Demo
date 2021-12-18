@@ -1,16 +1,8 @@
 <?php
 
 /***********************
-    DATABASE HANDLING
+DATABASE HANDLING
 ************************/
-
-/* To create database, insert this statement into MySql:
-
-create database phplogin;
-
-use database phplogin;
-
-*/
 
 //Create database connection
 $servername = 'localhost';
@@ -36,7 +28,6 @@ function make_table() {
     email VARCHAR(50) NOT NULL,
     username VARCHAR(20) NOT NULL,
     pword VARCHAR(255) NOT NULL,
-    regdate DATE DEFAULT CURRENT_TIMESTAMP NOT NULL,
     PRIMARY KEY(userid)
     )";
 

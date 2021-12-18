@@ -2,23 +2,21 @@
     include_once 'header.php';
 ?>
 
-    <section>
-        
-        <form class="signup-form" action="includes/signup.inc.php" method="post">
-            <h2>Sign Up</h2>
-            <h2></h2>
-            <label for="signup-email">Email:</label>
-            <input type="text" name="signup-email" placeholder="Email...">
-            <label for="signup-uname">Username:</label>
-            <input type="text" name="signup-uname" placeholder="Username...">
-            <label for="signup-pword">Password:</label>
-            <input type="password" name="signup-pword" placeholder="Password...">
-            <label for="pwordrepeat">Verify Password:</label>
-            <input type="password" name="pwordrepeat" placeholder="Verify Password...">
-            <p>Already a member? Click <a href="../project/login.php">here</a> to log in!</p>
-            <button class="btn" type='submit' name='submit'>Sign Up</button> 
-        
-
+    <section class="signup-form">
+        <h2>Sign Up</h2>
+        <div class="signup-form-form">
+            <form action="includes/signup.inc.php" method="post">
+                <label for="signup-email">Email:</label>
+                <input type="text" name="signup-email" placeholder="Email...">
+                <label for="signup-uname">Username:</label>
+                <input type="text" name="signup-uname" placeholder="Username...">
+                <label for="signup-pword">Password:</label>
+                <input type="password" name="signup-pword" placeholder="Password...">
+                <label for="pwordrepeat">Verify Password:</label>
+                <input type="password" name="pwordrepeat" placeholder="Verify Password...">
+                <button type="submit" name="submit">Sign Up</button>
+            </form>
+        </div>
         <?php
 
         // If there is ?error=xxx in url, use $_GET method
@@ -37,16 +35,14 @@
             } else if ($_GET["error"] == "stmtfailed") {
                 echo "<p class='error-msg'>Sorry! Something went wrong, please try again.</p>";
             } else if ($_GET["error"] == "none") {
-                echo "<p class='success-msg'>You have signed up! Click <a href='../project/login.php'>here</a> to log in.</p>";
-                echo "<style> button[type='submit'] {display: none;}</style>"; // 'Sign Up' button only displays if user hasn't signed up successfully
+                echo "<p class='success-msg'>You have signed up!</p>";
             }
         }
 
         ?>
-        </form>
     </section>
     
     
-    </div>
+
 </body>
 </html>
